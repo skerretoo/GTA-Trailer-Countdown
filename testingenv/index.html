@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            /*ver1.7 index*/
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background-color: black;
+                z-index: 100;
+                animation: fadeOutOv 3.5s forwards;
+            }
+            @keyframes fadeOutOv {
+                from {
+                    opacity: 1;
+                }
+                to {
+                    opacity: 0;
+                    display: none;
+                }
+            }
+            @font-face {
+                font-family: "GTAArtDeco";
+                /* src: url(/res/font/62b84dbfc20341e064c88ec93455ccac.woff); */
+                src: url(https://cdn.glitch.global/bbcbb18d-1399-4b62-bd71-262bcaaa1761/62b84dbfc20341e064c88ec93455ccac.woff);
+            }
+            @media only screen and (max-width: 767px) {
+                .text-main {
+                    font-weight: 900 !important;
+                    font-size: 1.1em !important;
+                    line-height: 160% !important;
+                }
+                .l-p,
+                .r-p {
+                    width: 45% !important;
+                }
+                .imgat {
+                    background-position: 60% center !important;
+                }
+            }
+            @keyframes shrinkAnimation {
+                from {
+                    transform: scale(1.1);
+                }
+                to {
+                    transform: scale(1);
+                }
+            }
+            @keyframes imgBgFadeIn {
+                from {
+                    transform: scale(1.1);
+                }
+                to {
+                    transform: scale(1);
+                }
+            }
+            @keyframes textFadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: "GTAArtDeco", sans-serif;
+                overflow: hidden;
+            }
+            .imgat {
+                background-image: url(https://raw.githubusercontent.com/skerretoo/GTA-Trailer-Countdown/main/res/img/cff62fb2b8dc824b667505750129bd4d.jpg);
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                height: 100vh;
+                position: relative;
+                animation: imgBgFadeIn 2s ease-in-out forwards;
+            }
+            .l-p,
+            .r-p {
+                height: 100%;
+                width: 35%;
+                position: absolute;
+                background-repeat: no-repeat;
+                background-size: cover;
+                transform: scale(1);
+                animation: shrinkAnimation 2s ease-in-out forwards;
+                
+            }
+            .l-p {
+                background-position: 100% 35%;
+                left: 0%;
+                background-image: url(https://raw.githubusercontent.com/skerretoo/GTA-Trailer-Countdown/main/res/img/c762105ff73b658b9e0d5373b9f6a476.png);
+            }
+            .r-p {
+                background-position: 0 30%;
+                left: unset;
+                right: 0;
+                background-image: url(https://raw.githubusercontent.com/skerretoo/GTA-Trailer-Countdown/main/res/img/d1fd72e459fc90381589af486ab6b029.png);
+            }
+            .main-content {
+                opacity: 0;
+                height: 100%;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                text-transform: uppercase;
+                color: white;
+                position: absolute;
+                /* position: relative;
+                animation: moveAnimation 2s infinite;
+                transform-origin: center; */
+                transform: scale(1);
+                animation: textFadeIn 2.1s ease-in-out forwards;
+                animation-delay: 0.5s;
+                z-index: 2 !important;
+                top: 45%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }   
+            .main-text {
+                font-weight: 550;
+                letter-spacing: 0.25em;
+                font-size: max(14px, 2.5vmin);
+                line-height: 125%;
+                padding: 0 8px;
+            }
+            #countdown {
+                text-align: center;
+            }
+            .bg-imgs {
+                z-index: 1;
+            }
+            .logo-main {
+                /* display: flex;
+                flex-direction: column;
+                align-items: center; */
+                margin-bottom: 25px;
+            }
+            .logo-main img {
+                width: 100%;
+                /* animation: shrinkAnimation 2s ease-in-out forwards; */
+            }
+            .img-a {
+                text-decoration: none;
+            }
+        </style>
+        <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
+        <link rel="icon" type="image/x-icon" href="https://bit.ly/gta6-logo-web" />
+        <title>GTA 6 Trailer Countdown</title>
+    </head>
+    <body>
+        <div id="replaceJS">
+        <div class="overlay"></div>
+        <div class="main">
+            <div class="imgat">
+                <div class="bg-imgs">
+                    <div class="l-p"></div>
+                    <div class="r-p"></div>
+                </div>
+                <div class="main-content">
+                    <div class="logo-main">
+                        <a class="img-a" href="https://www.rockstargames.com" target="_blank">
+                            <img src="https://raw.githubusercontent.com/skerretoo/GTA-Trailer-Countdown/main/res/img/fc963a9d16b48257c8027020229ab77a-rockstar-logo.svg" alt="Rockstar Logo" class="rockstarlogo" />
+                        </a>
+                    </div>
+                    <div class="main-text">
+                        <div id="countdown"></div>
+                        <p>next GTA Trailer</p>
+                        <p>Tuesday, December 5</p>
+                        <p id="conv-time"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+ function updateCountdown() {
+    const countdownDate = new Date("December 5, 2023 09:00:00 GMT-0500").getTime();
+    const now = new Date().getTime();
+    const distance = countdownDate - now;
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    const countdownElement = document.getElementById("countdown");
+    countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    const easternTime = new Date("December 5, 2023 09:00:00 GMT-0500");
+    const userLocalTime = new Date(easternTime.toLocaleString("en-US", { timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone }));
+    const userTimeFormatted = userLocalTime.toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric", hour12: true });
+    const formattedTime = `9 AM ET (${userTimeFormatted} local time)`;
+    const convTimeElement = document.getElementById("conv-time");
+    convTimeElement.innerHTML = formattedTime;
+    let link;
+    if (hours <= 17 && minutes <= 53) {
+        const content = document.getElementById('replaceJS');
+        if (content) {
+            src = document.createElement('script');
+            src.src = '/testingenv/replace/nearly/script.js';
+            src.async = true;
+            src.onload = () => {
+                console.log("script loaded.")
+            }
+            link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = '/testingenv/replace/style.css';
+            fetch('/testingenv/replace/trailernout.html')
+                .then(response => response.text())
+                .then(data => {
+                    content.innerHTML = data;
+                    const head = document.head || document.getElementsByTagName('head')[0];
+                    head.appendChild(link);
+                    head.appendChild(src);
+                })
+                console.log("fetched to replacejs")
+        } 
+        return;
+    } 
+    setTimeout(updateCountdown, 1000);
+}
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("DOM active.");
+    setTimeout(function () {
+        console.log("Overlay disappearing.");
+        document.body.classList.add("loaded");
+    }, 500);
+});
+updateCountdown();
+// document.addEventListener('DOMContentLoaded', function () {
+//   
+// });
+        </script>
+        </div>
+    </body>
+</html>
