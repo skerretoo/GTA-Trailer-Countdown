@@ -1,0 +1,199 @@
+/*ver1.1repJS*/
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    z-index: 100;
+    animation: fadeOutOv 3.5s forwards;
+}
+@keyframes fadeOutOv {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        display: none;
+    }
+}
+@font-face {
+    font-family: "GTAArtDeco";
+    /* src: url(/res/font/62b84dbfc20341e064c88ec93455ccac.woff); */
+    src: url(https://cdn.glitch.global/bbcbb18d-1399-4b62-bd71-262bcaaa1761/62b84dbfc20341e064c88ec93455ccac.woff);
+}
+@media only screen and (max-width: 1000px) {
+    .player {
+        width: 90% !important;
+    }
+}
+@media only screen and (max-width: 767px) {
+    .main-text {
+        font-weight: 900 !important;
+        font-size: 1.1em !important;
+        line-height: 160% !important;
+    }
+    .l-p,
+    .r-p {
+        width: 45% !important;
+    }
+    .imgat {
+        background-position: 60% center !important;
+    }
+    .player {
+        width:85% !important;
+        height: 30% !important;
+        margin-bottom: 15%;
+    }
+    .player iframe {
+        height: 100% !important;
+        width: 100% !important;
+    }
+}
+@keyframes shrinkAnimation {
+    from {
+        transform: scale(1.1);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+@keyframes imgBgFadeIn {
+    from {
+        transform: scale(1.1);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+@keyframes textFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+/* @keyframes moveAnimation {
+0%,
+100% {
+transform: translate(0, 0);
+}
+25% {
+transform: translate(5px, 5px);
+}
+75% {
+transform: translate(-5px, -5px);
+}
+} */
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "GTAArtDeco", sans-serif;
+    overflow: hidden;
+}
+.imgat {
+    background-image: url(https://raw.githubusercontent.com/skerretoo/GTA-Trailer-Countdown/main/res/img/cff62fb2b8dc824b667505750129bd4d.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+    animation: imgBgFadeIn 2s ease-in-out forwards;
+}
+.l-p,
+.r-p {
+    height: 100%;
+    width: 35%;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: scale(1);
+    animation: shrinkAnimation 2s ease-in-out forwards;
+    
+}
+.l-p {
+    background-position: 100% 35%;
+    left: 0%;
+    background-image: url(https://raw.githubusercontent.com/skerretoo/GTA-Trailer-Countdown/main/res/img/c762105ff73b658b9e0d5373b9f6a476.png);
+}
+.r-p {
+    background-position: 0 30%;
+    left: unset;
+    right: 0;
+    background-image: url(https://raw.githubusercontent.com/skerretoo/GTA-Trailer-Countdown/main/res/img/d1fd72e459fc90381589af486ab6b029.png);
+}
+.main-content {
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+    position: absolute;
+    /* position: relative;
+    animation: moveAnimation 2s infinite;
+    transform-origin: center; */
+    transform: scale(1);
+    animation: textFadeIn 2.1s ease-in-out forwards;
+    animation-delay: 0.5s;
+    z-index: 2 !important;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.main-text {
+    font-weight: 550;
+    letter-spacing: 0.4em;
+    font-size: max(10px, 2vmin);
+    line-height: 100%;
+    padding: 0 8px;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+#countdown {
+    text-align: center;
+}
+.bg-imgs {
+    z-index: 1;
+}
+.logo-main {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    margin-bottom: 25px;
+}
+.logo-main img {
+    width: 100%;
+    /* animation: shrinkAnimation 2s ease-in-out forwards; */
+}
+.img-a {
+    text-decoration: none;
+}
+.link-main-notextdec {
+    text-decoration: none;
+    color: white;
+}
+/* .main-text-3 {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out;
+    font-size: max(10px, 1.2vmin)
+} */
+.player {
+    width:90vh;
+    height: 50% ;
+    margin-bottom: 2%;
+}
+.player iframe {
+    height: 100% ;
+    width: 100% ;
+}
