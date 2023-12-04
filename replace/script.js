@@ -9,15 +9,15 @@ function updateCountdown() {
     const countdownElement = document.getElementById("countdown1");
     countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     let link;
-    if (hours <= 17 && minutes <= 52 && seconds <= 30) {
+    if (hours <= 17 && minutes <= 37 && seconds <= 30) {
         const content = document.getElementById('replaceJS');
         if (content) {
-            // src = document.createElement('script');
-            // src.src = 'script.js';
-            // src.async = true;
-            // src.onload = () => {
-            //     console.log("script loaded.")
-            // }
+            let src = document.createElement('script');
+            src.src = 'script.js';
+            src.async = true;
+            src.onload = () => {
+                console.log("script loaded.")
+            }
             link = document.createElement('link');
             link.rel = 'stylesheet';
             link.type = 'text/css';

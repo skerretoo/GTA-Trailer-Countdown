@@ -203,7 +203,7 @@
     const convTimeElement = document.getElementById("conv-time");
     convTimeElement.innerHTML = formattedTime;
     let link;
-    if (hours <= 17 && minutes <= 53) {
+    if (hours <= 18 && minutes <= 30) {
         const content = document.getElementById('replaceJS');
         if (content) {
             src = document.createElement('script');
@@ -216,6 +216,9 @@
             link.rel = 'stylesheet';
             link.type = 'text/css';
             link.href = '/replace/style.css';
+            link.onload = () => {
+                console.log("style loaded.")
+            }
             fetch('/replace/trailernout.html')
                 .then(response => response.text())
                 .then(data => {
