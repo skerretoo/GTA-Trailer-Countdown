@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        #poup-overlay {
+position: fixed;top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); display: flex; align-items: center; justify-content: center; z-index: 999 !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="poup-overlay" style="position: fixed;top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); display: flex; align-items: center; justify-content: center; z-index: 999 !important;">
+        <div style="background-color: #fff; padding: 20px; text-align: center; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+            JavaScript disabled. It is requried. Please enable it and refresh this page.
+        </div>
+    </div>
+    <div class="main-textes" style="text-align: center;">
+        <br><br><br>
+        <h1 >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis, ipsa vero assumenda impedit eveniet consequuntur nihil illum omnis voluptate quos, magnam mollitia consequatur dicta at corrupti voluptates numquam perferendis. Aliquid.
+        </h1>
+        <h3>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat ullam laboriosam quia quo exercitationem nemo est corporis. Deleniti eius deserunt neque consectetur tenetur laboriosam, quasi modi animi expedita facere eveniet.</h3>
+        <br>
+        <br>
+        <br>
+        <h5>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis repudiandae doloremque porro, temporibus voluptate quidem eos aut sequi quisquam fugiat optio reprehenderit! Deserunt saepe soluta amet rem similique, quisquam nihil.</h5>
+    </div>
+    <script>
+        document.getElementById('poup-overlay').style.display = 'none';
+    </script>
+</body>
+</html>
