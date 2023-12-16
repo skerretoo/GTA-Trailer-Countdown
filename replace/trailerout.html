@@ -1,43 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link id="dynamic-style" rel="stylesheet" href="/replace/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link id="dynamic-style" rel="stylesheet" href="/replace/style.css" />
     <script src="script.js" defer></script>
     <link rel="icon" type="image/x-icon" href="https://bit.ly/gta6-logo-web" />
     <title>GTA 6 Trailer !</title>
-    </head>
-    <body>
-        <!-- ver 1.0 trailerout -->
-        <div id="replaceJS">
-        <!-- <div class="overlay"></div> -->
-        <div class="main">
-            <div class="imgat">
-                <div class="bg-imgs">
-                    <div class="l-p"></div>
-                    <div class="r-p"></div>
-                </div>
-                <div class="main-content">
-                    <div class="player">
-                        <iframe src="https://www.youtube.com/embed/QdBZY2fkU-0?si=LrxqnxYaeOIGhItv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    </div>
-                    <div class="main-text">
-                        <h1>Trailer is out!</h1>
-                    </div>
-                </div>
+  </head>
+  <body>
+    <!-- ver 1.1 trailerout -->
+    <div id="replaceJS">
+      <!-- <div class="overlay"></div> -->
+      <div class="main">
+        <div class="imgat">
+          <div class="bg-imgs">
+            <div class="l-p"></div>
+            <div class="r-p"></div>
+          </div>
+          <div class="main-content">
+            <div class="player">
+              <iframe
+                src="https://www.youtube.com/embed/QdBZY2fkU-0?si=LrxqnxYaeOIGhItv"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
             </div>
+            <div class="main-text"><h1>Trailer is out!</h1></div>
+          </div>
         </div>
-        </div>
-        <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            console.log("DOM active.");
-            setTimeout(function () {
-                console.log("Overlay disappearing.");
-                document.body.classList.add("loaded");
-            }, 500);
-        });
-        updateCountdown();
-        </script>
-    </body>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("DOM active.");
+        setTimeout(function () {
+          console.log("Overlay disappearing.");
+          document.body.classList.add("loaded");
+        }, 500);
+      });
+      updateCountdown();
+    </script>
+  </body>
 </html>
