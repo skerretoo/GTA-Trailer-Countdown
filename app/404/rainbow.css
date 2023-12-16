@@ -1,0 +1,39 @@
+@keyframes rainbow{
+		100%,0%{
+			color: rgb(255,0,0);
+		}
+		18%{
+			color: rgb(255,127,0);
+		}
+		27%{
+			color: rgb(127,255,0);
+		}
+		36%{
+			color: rgb(0,255,0);
+		}
+		45%{
+			color: rgb(0,255,127);
+		}
+		54%{
+			color: rgb(0,255,255);
+		}
+		63%{
+			color: rgb(0,127,255);
+		}
+		72%{
+			color: rgb(0,0,255);
+		}
+		81%{
+			color: rgb(127,0,255);
+		}
+		90%{
+			color: rgb(255,0,255);
+		}
+		99%{
+			color: rgb(255,0,127);
+		}
+}
+.special {
+  animation: rainbow 4s linear;
+	animation-iteration-count: infinite;
+}

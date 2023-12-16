@@ -1,0 +1,17 @@
+{
+    "name": "gta6-countdown",
+    "version": "1.0.0",
+    "description": "Your project description",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "dependencies": {
+      "express": "^4.18.2"
+    },
+    "engines": {
+      "node": "14.1"
+    },
+    "license": "MIT"
+  }
+  
