@@ -8,39 +8,41 @@ function updateCountdown() {
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
     const countdownElement = document.getElementById("countdown1");
     countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    let link;
+
     if (hours <= 17 && minutes <= 37 && seconds <= 30) {
         const content = document.getElementById('replaceJS');
         if (content) {
-            let src = document.createElement('script');
-            src.src = 'script.js';
-            src.async = true;
-            src.onload = () => {
-                console.log("script loaded.")
-            }
-            link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.type = 'text/css';
-            link.href = 'style.css';
             fetch('/replace/trailerout.html')
-                .then(response => response.text())
-                .then(data => {
-                    content.innerHTML = data;
-                    const head = document.head || document.getElementsByTagName('head')[0];
-                    head.appendChild(link);
-                    head.appendChild(src);
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Failed to fetch trailerout.html. Status: ${response.status}`);
+                    }
+                    return response.text();
                 })
-            console.log("fetched to replacejs")
-        } 
+                .then(data => {
+                    const head = document.head || document.getElementsByTagName('head')[0];
+                    const link = document.createElement('link');
+                    link.rel = 'stylesheet';
+                    link.type = 'text/css';
+                    link.href = '/replace/style.css'; // Update the path
+                    head.appendChild(link);
+
+                    const script = document.createElement('script');
+                    script.src = '/replace/script.js'; // Update the path
+                    script.async = true;
+                    script.onload = () => {
+                        console.log("script loaded.")
+                    };
+                    head.appendChild(script);
+
+                    content.innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        }
         return;
-    } 
+    }
+
     setTimeout(updateCountdown, 1000);
 }
-document.addEventListener("DOMContentLoaded", function () {
-    console.log("DOM active.");
-    setTimeout(function () {
-        console.log("Overlay disappearing.");
-        document.body.classList.add("loaded");
-    }, 500);
-});
-updateCountdown();

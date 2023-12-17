@@ -16,7 +16,20 @@
       z-index: 100;
       animation: fadeOutOv 3.5s forwards;
     }
-
+    #fakeLoading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+    }
     @keyframes fadeOutOv {
       from {
         opacity: 1;
@@ -187,6 +200,7 @@
       </div>
     </div>
   </noscript>
+  <div id="fakeLoading">The content is being loaded.</div>
   <div id="replaceJS" style="display:none;">
     <div class="overlay"></div>
     <div class="main">
@@ -209,10 +223,39 @@
       </div>
     </div>
     <script>
+window.onload = function () {
+    const fakeLoadingDiv = document.getElementById('fakeLoading');
+    const overlayDiv = document.getElementById('overlay');
+    let timeout;
+    function startFakeLoadingTimeout() {
+      timeout = setTimeout(() => {
+        hideFakeLoadingAndShowOverlay();
+      }, 5000);
+    }
+    if (typeof window.fetch === 'function') {
+      startFakeLoadingTimeout();
+
+      fetch('https://gta6-countdown.glitch.me/replace/trailernout.html')
+        .then(response => response.json())
+        .then(data => {
+          clearTimeout(timeout);
+          hideFakeLoadingAndShowOverlay();
+        })
+    } else {
+      hideFakeLoadingAndShowOverlay();
+    }
+    function hideFakeLoadingAndShowOverlay() {
+      if (fakeLoadingDiv) {
+        fakeLoadingDiv.style.display = 'none';
+      }
+      if (overlayDiv) {
+        overlayDiv.style.animation = 'fadeOutOv 3.5s forwards';
+      }
+    startFakeLoadingTimeout();
       document.getElementById('replaceJS').style.display = 'block';
 
       function updateCountdown() {
-        const countdownDate = new Date('December 5, 2023 09:00:00 GMT-0500').getTime();
+        const countdownDate = new Date('December 17, 2023 12:00:00 GMT+0100').getTime();
         const now = new Date().getTime();
         const distance = countdownDate - now;
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -238,7 +281,7 @@
 
         let link;
 
-        if (hours <= 0 && minutes <= 30) {
+        if (hours <= 10 && minutes <= 59) {
           const content = document.getElementById('replaceJS');
           if (content) {
             const script = document.createElement('script');
@@ -259,30 +302,21 @@
             fetch('/replace/trailernout.html')
               .then((response) => {
                 if (!response.ok) {
-                  console.error(`Failed to fetch: ${response.status} ${response.statusText}`);
-                  throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`);
                 }
                 return response.text();
               })
               .then((data) => {
-                console.log('Fetch successful. Received data:', data);
                 content.innerHTML = data;
                 const head = document.head || document.getElementsByTagName('head')[0];
                 head.appendChild(link);
                 head.appendChild(script);
               })
-              .catch((error) => {
-                console.error('Fetch error:', error);
-              });
-
             console.log('fetched to replacejs');
             return;
           }
         }
-
         setTimeout(updateCountdown, 1000);
-      }
-
+      };
       document.addEventListener('DOMContentLoaded', function () {
         console.log('DOM active.');
         setTimeout(function () {
@@ -290,14 +324,14 @@
           document.body.classList.add('loaded');
         }, 500);
       });
-
       updateCountdown();
-
       document.addEventListener('DOMContentLoaded', function () {
         if (window.location.href === window.location.origin + '/index.html') {
           window.location.href = '/error.html';
         }
       });
+    }
+  };
     </script>
   </div>
 </body>
